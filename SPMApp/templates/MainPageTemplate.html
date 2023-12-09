@@ -126,11 +126,11 @@
                                     });
                                 }
 
-                                $("#loadLatestData").click(function() {
-                                    fetchDropdownData();
-                                    fetchDropdownData_company();
-                                    fetchDropdownData_item();
-                                    });
+                                // $("#loadLatestData").click(function() {
+                                //     fetchDropdownData();
+                                //     fetchDropdownData_company();
+                                //     fetchDropdownData_item();
+                                //     });
 
                                 fetchDropdownData();
                                 fetchDropdownData_company();
@@ -153,7 +153,7 @@
 
 
                     <button type="submit" class="form-submit">Model Submit</button>
-                    <button id="loadLatestData" type="button" class="form-submit">Fetch All Vendor,Company,Items</button>
+<!--                    <button id="loadLatestData" type="button" class="form-submit">Fetch All Vendor,Company,Items</button>-->
                 </form>
             </div>
             <a href="{% url 'FetchModelDetails' %}" class="styled-button">FetchModelDetails
