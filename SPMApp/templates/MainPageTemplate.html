@@ -6,7 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Styled Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>SPM Auto Solutions</title>
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 </head>
 <body>
@@ -15,97 +16,103 @@
 <!--<img class="facebook-logo" src="{% static 'images/logo.jpeg' %}" alt="Company Logo">-->
 <!--</div>-->
 
-</br>
 
-<div class="bordered-div">
-    <div class="form-container">
-        <form method="post" action="{% url 'MainPage' %}" id="myForm">
-            {% csrf_token %}
-            <!-- Style for form fields -->
-            <div class="form-field">
-                {{ form.as_p }}
-                 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-                 <script>
-                    // Show/hide the custom vendor name input based on the selected option
-                    document.getElementById('id_VendorType').addEventListener('change', function () {
-                        var otherVendorNameInput = document.getElementById('id_other_vendor_name');
-                        if (this.value === 'other') {
-                            otherVendorNameInput.style.display = (this.value === 'other') ? 'block' : 'none';
-                        } else {
-                            otherVendorNameInput.style.display = 'none';
-                            otherVendorNameInput.value = '';  // Clear the value if not 'other'
-                        }
-                    });
-                    // Show/hide the custom vendor name input based on the selected option
-                    document.getElementById('id_CompanyType').addEventListener('change', function () {
-                        var otherCompanyNameInput = document.getElementById('id_other_company_name');
-                        if (this.value === 'other') {
-                            otherCompanyNameInput.style.display = (this.value === 'other') ? 'block' : 'none';
-                        } else {
-                            otherCompanyNameInput.style.display = 'none';
-                            otherCompanyNameInput.value = '';  // Clear the value if not 'other'
-                        }
-                    });
-                    // Show/hide the custom vendor name input based on the selected option
-                    document.getElementById('id_ItemType').addEventListener('change', function () {
-                        var otherItemNameInput = document.getElementById('id_other_item_name');
-                        if (this.value === 'other') {
-                            otherItemNameInput.style.display = (this.value === 'other') ? 'block' : 'none';
-                        } else {
-                            otherItemNameInput.style.display = 'none';
-                            otherItemNameInput.value = '';  // Clear the value if not 'other'
-                        }
-                    });
-
-                    $(document).ready(function() {
-                        // Event handler for button click
-                        $('#form-submit').on('click', function() {
-                            console.error('Error retrieving data.');
-                            // Make an AJAX request
-                            $.ajax({
-                                url: '/get_column_data/',
-                                type: 'GET',
-                                success: function(response)  {
-                                    // Update the choices in the form's dropdown
-                                    var dropdown = $('#VendorType');  // Replace with the actual ID of your dropdown
-                                    dropdown.empty();  // Clear existing options
-
-                                    // Populate the dropdown with the retrieved data
-                                    $.each(response.data, function(index, value) {
-                                        console.error('Error retrieving data.');
-                                        dropdown.append($('<option>').text(value).attr('value', value));
-                                    });
-                                },
-                                error: function() {
-                                    console.error('Error retrieving data.');
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Fill Model Details</h3>
+            </div>
+            <div class="card-body">
+                <form method="post" action="{% url 'MainPage' %}" id="myForm">
+                    {% csrf_token %}
+                    <!-- Style for form fields -->
+                    <div class="form-field">
+                        {{ form.as_p }}
+                         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+                         <script>
+                            // Show/hide the custom vendor name input based on the selected option
+                            document.getElementById('id_VendorType').addEventListener('change', function () {
+                                var otherVendorNameInput = document.getElementById('id_other_vendor_name');
+                                if (this.value === 'other') {
+                                    otherVendorNameInput.style.display = (this.value === 'other') ? 'block' : 'none';
+                                } else {
+                                    otherVendorNameInput.style.display = 'none';
+                                    otherVendorNameInput.value = '';  // Clear the value if not 'other'
                                 }
                             });
-                        });
-                    });
-                </script>
+                            // Show/hide the custom vendor name input based on the selected option
+                            document.getElementById('id_CompanyType').addEventListener('change', function () {
+                                var otherCompanyNameInput = document.getElementById('id_other_company_name');
+                                if (this.value === 'other') {
+                                    otherCompanyNameInput.style.display = (this.value === 'other') ? 'block' : 'none';
+                                } else {
+                                    otherCompanyNameInput.style.display = 'none';
+                                    otherCompanyNameInput.value = '';  // Clear the value if not 'other'
+                                }
+                            });
+                            // Show/hide the custom vendor name input based on the selected option
+                            document.getElementById('id_ItemType').addEventListener('change', function () {
+                                var otherItemNameInput = document.getElementById('id_other_item_name');
+                                if (this.value === 'other') {
+                                    otherItemNameInput.style.display = (this.value === 'other') ? 'block' : 'none';
+                                } else {
+                                    otherItemNameInput.style.display = 'none';
+                                    otherItemNameInput.value = '';  // Clear the value if not 'other'
+                                }
+                            });
+
+                            $(document).ready(function() {
+                                // Event handler for button click
+                                $('#form-submit').on('click', function() {
+                                    console.error('Error retrieving data.');
+                                    // Make an AJAX request
+                                    $.ajax({
+                                        url: '/get_column_data/',
+                                        type: 'GET',
+                                        success: function(response)  {
+                                            // Update the choices in the form's dropdown
+                                            var dropdown = $('#VendorType');  // Replace with the actual ID of your dropdown
+                                            dropdown.empty();  // Clear existing options
+
+                                            // Populate the dropdown with the retrieved data
+                                            $.each(response.data, function(index, value) {
+                                                console.error('Error retrieving data.');
+                                                dropdown.append($('<option>').text(value).attr('value', value));
+                                            });
+                                        },
+                                        error: function() {
+                                            console.error('Error retrieving data.');
+                                        }
+                                    });
+                                });
+                            });
+                        </script>
+                    </div>
+
+                    <div>
+                        {% if success_message %}
+                            <b style="color: green;">{{ success_message }}</b>
+                        {% endif %}
+
+                        {% if error_message %}
+                            <b style="color: red;">{{ error_message }}</b>
+                        {% endif %}
+
+                    </div>
+
+                    <!-- Style for submit button -->
+                    <button type="submit" class="form-submit">Submit</button>
+                </form>
             </div>
-
-            <div>
-                {% if success_message %}
-                    <b style="color: green;">{{ success_message }}</b>
-                {% endif %}
-
-                {% if error_message %}
-                    <b style="color: red;">{{ error_message }}</b>
-                {% endif %}
-
-            </div>
-
-            <!-- Style for submit button -->
-            <button type="submit" class="form-submit">Submit</button>
-        </form>
-
             <a href="{% url 'FetchModelDetails' %}" class="styled-button">FetchModelDetails
             </a>
+        </div>
     </div>
-</div>
 
-
+<!-- Include Bootstrap scripts -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 </body>
 </html>

@@ -6,15 +6,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Styled Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>SPM Auto Solutions</title>
     <link rel="stylesheet" href="{% static '/style.css' %}">
 </head>
 <body>
 <h1 class="facebook-like-heading">SPM Auto Solutions</h1>
 
-<div class="bordered-div">
-    <div class="form-container">
-    <form method="post" action="{% url 'FetchModelDetails' %}">
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Retrieve Model Details</h3>
+            </div>
+            <div class="card-body">
+                <form method="post" action="{% url 'FetchModelDetails' %}">
 
                 {% csrf_token %}
                 {{ form.as_p }}
@@ -27,13 +32,20 @@
                 {% endif %}
 
                 <!-- Style for submit button -->
-                <button type="submit" class="form-submit">FetchDetails</button>
-        <br>
-    </form>
-        <a href="{% url 'MainPage' %}" class="styled-button">Home
+                <button type="submit" class="form-submit">Retrieve Model Details</button>
+                    <br>
+                </form>
+            </div>
+        <a href="{% url 'MainPage' %}" class="styled-button">Home Page
             </a>
-</div>
+        </div>
     </div>
+<!-- Include Bootstrap scripts -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
 {% if data_from_database %}
             <table border="3">
                 <thead>
