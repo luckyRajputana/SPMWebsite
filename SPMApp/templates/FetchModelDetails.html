@@ -1,0 +1,98 @@
+<!-- my_template.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled Form</title>
+    <link rel="stylesheet" href="{% static '/style.css' %}">
+</head>
+<body>
+<h1 class="facebook-like-heading">SPM Auto Solutions</h1>
+
+<div class="bordered-div">
+    <div class="form-container">
+    <form method="post" action="{% url 'FetchModelDetails' %}">
+
+                {% csrf_token %}
+                {{ form.as_p }}
+                {% if success_message %}
+                    <p style="color: green;">{{ success_message }}</p>
+                {% endif %}
+
+                {% if error_message %}
+                    <p style="color: red;">{{ error_message }}</p>
+                {% endif %}
+
+                <!-- Style for submit button -->
+                <button type="submit" class="form-submit">FetchDetails</button>
+        <br>
+    </form>
+        <a href="{% url 'MainPage' %}" class="styled-button">Home
+            </a>
+</div>
+    </div>
+{% if data_from_database %}
+            <table border="3">
+                <thead>
+                    <tr>
+                        <th>ModelNo</th>
+                        <th>VendorType</th>
+                        <th>CompanyType</th>
+                        <th>ItemType</th>
+                        <th>HSNCode</th>
+                        <th>PriceFromChina</th>
+                        <th>DeclaredCustomPrice</th>
+                        <th>SellingPrice</th>
+                        <th>DateTime</th>
+
+
+                        <!-- Add more headers for other fields as needed -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in data_from_database %}
+                        <tr>
+                            <td>{{ item.ModelNo }}</td>
+                            <td>{{ item.VendorType }}</td>
+                            <td>{{ item.CompanyType }}</td>
+                            <td>{{ item.ItemType }}</td>
+                            <td>{{ item.HSNCode }}</td>
+                            <td>{{ item.PriceFromChina }}</td>
+                            <td>{{ item.DeclaredCustomPrice }}</td>
+                            <td>{{ item.SellingPrice }}</td>
+                            <td>{{ item.DateTime }}</td>
+                            <td>
+<!--                                <button class="delete-button" data-object-id="{{ object.id }}">Delete</button>-->
+                                 <a href="{% url 'Row_delete' pk=item.pk %}">Delete</a>
+                            </td>
+                            <!-- Add more cells for other fields as needed -->
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+<!--            <script>-->
+<!--                document.addEventListener('DOMContentLoaded', function () {-->
+<!--                    // Add event listener to delete buttons-->
+<!--                    var deleteButtons = document.querySelectorAll('.delete-button');-->
+<!--                    deleteButtons.forEach(function (button) {-->
+<!--                        button.addEventListener('click', function () {-->
+<!--                            var objectId = this.getAttribute('data-object-id');-->
+<!--                            // You can perform further actions like making an AJAX request to delete the object-->
+<!--                            // For simplicity, an alert is shown here-->
+<!--                            if (confirm('Are you sure you want to delete this object?')) {-->
+<!--                                // You can redirect to a delete view or perform an AJAX request here-->
+<!--                                window.location.href = `/getmodeldetails/${objectId}/delete/`;-->
+<!--                                alert('Object with ID ' + objectId + ' will be deleted.');-->
+<!--                            }-->
+<!--                        });-->
+<!--                    });-->
+<!--                });-->
+<!--            </script>-->
+        {% endif %}
+
+
+</body>
+</html>
