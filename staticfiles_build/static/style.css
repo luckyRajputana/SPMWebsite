@@ -71,12 +71,12 @@ tr:hover {
 }
 
 .facebook-like-heading {
-    font-family: 'Helvetica', sans-serif; /* Use a suitable font */
-    font-size: 24px;
-    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 50px;
     color: #FFFFFF; /* Facebook's primary blue color */
     margin-bottom: 20px;
-    background-color: #1877f2
+    background-color: #08009f;
+    align-items: center;
 }
 .styled-button {
             display: inline-block;

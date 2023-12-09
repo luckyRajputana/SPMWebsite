@@ -10,7 +10,7 @@ table {
     width: 80%;
     margin: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+    background-color: #857b7b;
 }
 
 th, td {
@@ -59,10 +59,13 @@ tr:hover {
 .form-submit {
     background-color: #4CAF50;
     color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
     cursor: pointer;
+    width: calc(100% - 16px); /* Adjusted width */
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 .bordered-div {
@@ -71,12 +74,12 @@ tr:hover {
 }
 
 .facebook-like-heading {
-    font-family: 'Helvetica', sans-serif; /* Use a suitable font */
-    font-size: 24px;
-    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 50px;
     color: #FFFFFF; /* Facebook's primary blue color */
     margin-bottom: 20px;
-    background-color: #1877f2
+    background-color: #08009f;
+    text-align: center;
 }
 .styled-button {
             display: inline-block;
@@ -87,7 +90,15 @@ tr:hover {
             cursor: pointer;
             border-radius: 5px;
             color: #fff;
-            background-color: #3498db;
-            border: 2px solid #3498db;
+            background-color: #08009f;
+            border: 2px solid #08009f;
             transition: background-color 0.3s, color 0.3s;
+}
+input {
+    width: calc(100% - 16px); /* Adjusted width */
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
