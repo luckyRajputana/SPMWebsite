@@ -47,7 +47,8 @@
 
 
 {% if data_from_database %}
-            <table border="3">
+    <div class="container mt-5">
+            <table>
                 <thead>
                     <tr>
                         <th>ModelNo</th>
@@ -64,6 +65,7 @@
                         <!-- Add more headers for other fields as needed -->
                     </tr>
                 </thead>
+
                 <tbody>
                     {% for item in data_from_database %}
                         <tr>
@@ -85,6 +87,7 @@
                     {% endfor %}
                 </tbody>
             </table>
+    </div>
 <!--            <script>-->
 <!--                document.addEventListener('DOMContentLoaded', function () {-->
 <!--                    // Add event listener to delete buttons-->
