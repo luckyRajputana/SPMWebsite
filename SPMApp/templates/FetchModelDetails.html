@@ -7,6 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <title>SPM Auto Solutions</title>
     <link rel="stylesheet" href="{% static '/style.css' %}">
 </head>
@@ -41,14 +43,14 @@
         </div>
     </div>
 <!-- Include Bootstrap scripts -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>-->
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>-->
 
 
 {% if data_from_database %}
     <div class="container mt-5">
-            <table>
+            <table id="myTable">
                 <thead>
                     <tr>
                         <th>ModelNo</th>
@@ -88,24 +90,7 @@
                 </tbody>
             </table>
     </div>
-<!--            <script>-->
-<!--                document.addEventListener('DOMContentLoaded', function () {-->
-<!--                    // Add event listener to delete buttons-->
-<!--                    var deleteButtons = document.querySelectorAll('.delete-button');-->
-<!--                    deleteButtons.forEach(function (button) {-->
-<!--                        button.addEventListener('click', function () {-->
-<!--                            var objectId = this.getAttribute('data-object-id');-->
-<!--                            // You can perform further actions like making an AJAX request to delete the object-->
-<!--                            // For simplicity, an alert is shown here-->
-<!--                            if (confirm('Are you sure you want to delete this object?')) {-->
-<!--                                // You can redirect to a delete view or perform an AJAX request here-->
-<!--                                window.location.href = `/getmodeldetails/${objectId}/delete/`;-->
-<!--                                alert('Object with ID ' + objectId + ' will be deleted.');-->
-<!--                            }-->
-<!--                        });-->
-<!--                    });-->
-<!--                });-->
-<!--            </script>-->
+
         {% endif %}
 
 

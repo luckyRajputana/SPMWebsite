@@ -2,7 +2,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,7 +28,7 @@
                     <!-- Style for form fields -->
                     <div class="form-field">
                         {{ form.as_p }}
-                         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+                        <script src="https://code.jquery.com/jquery.min.js"></script>
                          <script>
                             // Show/hide the custom vendor name input based on the selected option
                             document.getElementById('id_VendorType').addEventListener('change', function () {
@@ -61,30 +61,81 @@
                                 }
                             });
 
-                            $(document).ready(function() {
-                                // Event handler for button click
-                                $('#form-submit').on('click', function() {
-                                    console.error('Error retrieving data.');
-                                    // Make an AJAX request
-                                    $.ajax({
-                                        url: '/get_column_data/',
-                                        type: 'GET',
-                                        success: function(response)  {
-                                            // Update the choices in the form's dropdown
-                                            var dropdown = $('#VendorType');  // Replace with the actual ID of your dropdown
-                                            dropdown.empty();  // Clear existing options
 
-                                            // Populate the dropdown with the retrieved data
-                                            $.each(response.data, function(index, value) {
-                                                console.error('Error retrieving data.');
-                                                dropdown.append($('<option>').text(value).attr('value', value));
+
+                        </script>
+                        <script>
+
+                            $(document).ready(function() {
+                            // Function to fetch dropdown data
+                                function fetchDropdownData() {
+                                    $.ajax({
+                                        type: "GET",
+                                        url: "{% url 'get_column_data' %}",
+                                        success: function(data) {
+                                            // Update Vendor
+                                            var dropdown = $("#id_VendorType");
+                                            dropdown.empty();
+                                            $.each(data.vendors, function(index, value) {
+                                                dropdown.append($("<option>").text(value));
                                             });
+
                                         },
-                                        error: function() {
-                                            console.error('Error retrieving data.');
+                                        error: function(error) {
+                                            console.log("Ajax request failed: " + error);
                                         }
                                     });
-                                });
+                                }
+                                function fetchDropdownData_company() {
+                                    $.ajax({
+                                        type: "GET",
+                                        url: "{% url 'get_column_data' %}",
+                                        success: function(data) {
+
+                                            // Update Company
+                                            var dropdown1 = $("#id_CompanyType");
+                                            dropdown1.empty();
+                                            $.each(data.companies, function(index, value) {
+                                                dropdown1.append($("<option>").text(value));
+                                            });
+
+                                        },
+                                        error: function(error) {
+                                            console.log("Ajax request failed: " + error);
+                                        }
+                                    });
+                                }
+
+                                function fetchDropdownData_item() {
+                                    $.ajax({
+                                        type: "GET",
+                                        url: "{% url 'get_column_data' %}",
+                                        success: function(data) {
+
+                                        // Update Item
+                                        var dropdown2 = $("#id_ItemType");
+                                        dropdown2.empty();
+                                        $.each(data.items_v, function(index, value) {
+                                            dropdown2.append($("<option>").text(value));
+                                        });
+
+                                        },
+                                        error: function(error) {
+                                            console.log("Ajax request failed: " + error);
+                                        }
+                                    });
+                                }
+
+                                $("#loadLatestData").click(function() {
+                                    fetchDropdownData();
+                                    fetchDropdownData_company();
+                                    fetchDropdownData_item();
+                                    });
+
+                                // fetchDropdownData();
+                                // fetchDropdownData_company();
+                                // fetchDropdownData_item();
+
                             });
                         </script>
                     </div>
@@ -100,8 +151,9 @@
 
                     </div>
 
-                    <!-- Style for submit button -->
-                    <button type="submit" class="form-submit">Submit</button>
+
+                    <button type="submit" class="form-submit">Model Submit</button>
+                    <button id="loadLatestData" type="button" class="form-submit">Fetch All Vendor,Company,Items</button>
                 </form>
             </div>
             <a href="{% url 'FetchModelDetails' %}" class="styled-button">FetchModelDetails
@@ -109,8 +161,6 @@
         </div>
     </div>
 
-<!--&lt;!&ndash; Include Bootstrap scripts &ndash;&gt;-->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 

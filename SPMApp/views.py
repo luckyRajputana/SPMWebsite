@@ -126,10 +126,13 @@ def RowDeleteView(request, pk):
 
 
 def GetColumnDataView(request):
-    column_name = request.GET.get('VendorType', None)
-
-    if column_name:
-        data = list(mainpagetable.objects.values_list(column_name, flat=True))
-        return JsonResponse({'data': data})
-    else:
-        return JsonResponse({'error': 'Column name not specified'}, status=400)
+    vendors = list(mainpagetable.objects.values_list("VendorType", flat=True))
+    vendors = list(sorted(set(vendors)))
+    vendors.append("other")
+    companies = list(mainpagetable.objects.values_list("CompanyType", flat=True))
+    companies = list(sorted(set(companies)))
+    companies.append("other")
+    items = list(mainpagetable.objects.values_list("ItemType", flat=True))
+    items_v = list(sorted(set(items)))
+    items_v.append("other")
+    return JsonResponse({'vendors':vendors ,'companies': companies,'items_v': items_v})
