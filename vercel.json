@@ -2,12 +2,12 @@
   "version": 2,
   "builds": [
     {
-      "src": "SPMWebsite/SPMWebsite/wsgi.py",
+      "src": "SPMWebsite/wsgi.py",
       "use": "@vercel/python",
       "config": {"maxLambdaSize": "15mb", "runtime": "python3.9"}
     },
     {
-      "src": "SPMWebsite/build_files.sh",
+      "src": "build_files.sh",
       "use": "@vercel/static-build",
       "config": {
         "distDir": "staticfiles_build"
@@ -20,7 +20,7 @@
     },
     {
       "src": "/.(.*)",
-      "dest": "SPMWebsite/SPMWebsite/wsgi.py"
+      "dest": "SPMWebsite/wsgi.py"
     }
   ]
 }
