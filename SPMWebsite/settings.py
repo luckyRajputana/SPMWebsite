@@ -73,12 +73,24 @@ WSGI_APPLICATION = 'SPMWebsite.wsgi.app'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'spmautosolutions',
+        'USER': 'spmautosolutions_user',
+        'PASSWORD': 'kxGVBsJQnO5xEn3OHH8eryq9qj6mRa3r',
+        'HOST': 'dpg-clq2ni1jvg7s73e2d6n0-a.ohio-postgres.render.com',
+        'PORT': '5432'
     }
 }
+
 
 
 # Password validation
