@@ -37,6 +37,7 @@ def MainPage(request):
                     Item_list.append((item, item))
                 if len(Item_list) == 0:
                     Item_list.append(("PLC", "PLC"))
+
                 if 'other' not in ITEM_CHOICES:
                     Item_list.append(('other', 'other'))
                 ITEM_CHOICES = Item_list
