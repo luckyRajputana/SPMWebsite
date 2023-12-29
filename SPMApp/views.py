@@ -15,6 +15,8 @@ def MainPage(request):
                 Vendor_list = []
                 for vendor in VENDOR_CHOICES:
                     Vendor_list.append((vendor, vendor))
+                if len(Vendor_list) == 0:
+                    Vendor_list.append(("Vendor1", "Vendor1"))
                 if 'other' not in VENDOR_CHOICES:
                     Vendor_list.append(('other', 'other'))
                 VENDOR_CHOICES = Vendor_list
@@ -23,6 +25,8 @@ def MainPage(request):
                 Company_list = []
                 for company in COMPANY_CHOICES:
                     Company_list.append((company, company))
+                if len(Company_list) == 0:
+                    Company_list.append(("Company1", "Company1"))
                 if 'other' not in COMPANY_CHOICES:
                     Company_list.append(('other', 'other'))
                 COMPANY_CHOICES = Company_list
@@ -31,6 +35,8 @@ def MainPage(request):
                 Item_list = []
                 for item in ITEM_CHOICES:
                     Item_list.append((item, item))
+                if len(Item_list) == 0:
+                    Item_list.append(("PLC", "PLC"))
                 if 'other' not in ITEM_CHOICES:
                     Item_list.append(('other', 'other'))
                 ITEM_CHOICES = Item_list
