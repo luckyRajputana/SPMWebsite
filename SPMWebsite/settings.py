@@ -83,10 +83,10 @@ WSGI_APPLICATION = 'SPMWebsite.wsgi.app'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'spmautosolutions',
+        'NAME': 'spmautosolutions_cdvc',
         'USER': 'spmautosolutions_user',
-        'PASSWORD': 'kxGVBsJQnO5xEn3OHH8eryq9qj6mRa3r',
-        'HOST': 'dpg-clq2ni1jvg7s73e2d6n0-a.ohio-postgres.render.com',
+        'PASSWORD': 'Y0Okc6SlB7ajH8UtS6bYw4FKmGGpigQV',
+        'HOST': 'dpg-cnm8v5qcn0vc738d1tu0-a.ohio-postgres.render.com',
         'PORT': '5432'
     }
 }
