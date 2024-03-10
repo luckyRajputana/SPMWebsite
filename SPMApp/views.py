@@ -8,6 +8,7 @@ from .models import mainpagetable
 from django.core.files.storage import FileSystemStorage
 import pandas as pd
 from datetime import datetime
+from io import BytesIO
 
 def MainPage(request):
     if request.method == 'POST':
@@ -154,12 +155,10 @@ def upload_excel(request):
         try:
             print("Inside")
             excel_file = request.FILES['excel_file']
-            fs = FileSystemStorage()
-            filename = fs.save(excel_file.name, excel_file)
-            uploaded_file_url = fs.url(filename)
+            excel_data = excel_file.read()
+            df = pd.read_excel(BytesIO(excel_data))
+
             current_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            # Process the uploaded Excel file
-            df = pd.read_excel(excel_file)  # Read the Excel file using pandas
             excel_columns = list(df.columns)
             model_meta = mainpagetable._meta
 
