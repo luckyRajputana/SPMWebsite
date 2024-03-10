@@ -18,148 +18,189 @@
 
 
     <div class="container mt-5">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Fill Model Details</h3>
-            </div>
-            <div class="card-body">
-                <form method="post" action="{% url 'MainPage' %}" id="myForm">
-                    {% csrf_token %}
-                    <!-- Style for form fields -->
-                    <div class="form-field">
-                        {{ form.as_p }}
-                        <script src="https://code.jquery.com/jquery.min.js"></script>
-                         <script>
-                            // Show/hide the custom vendor name input based on the selected option
-                            document.getElementById('id_VendorType').addEventListener('change', function () {
-                                var otherVendorNameInput = document.getElementById('id_other_vendor_name');
-                                if (this.value === 'other') {
-                                    otherVendorNameInput.style.display = (this.value === 'other') ? 'block' : 'none';
-                                } else {
-                                    otherVendorNameInput.style.display = 'none';
-                                    otherVendorNameInput.value = '';  // Clear the value if not 'other'
-                                }
-                            });
-                            // Show/hide the custom vendor name input based on the selected option
-                            document.getElementById('id_CompanyType').addEventListener('change', function () {
-                                var otherCompanyNameInput = document.getElementById('id_other_company_name');
-                                if (this.value === 'other') {
-                                    otherCompanyNameInput.style.display = (this.value === 'other') ? 'block' : 'none';
-                                } else {
-                                    otherCompanyNameInput.style.display = 'none';
-                                    otherCompanyNameInput.value = '';  // Clear the value if not 'other'
-                                }
-                            });
-                            // Show/hide the custom vendor name input based on the selected option
-                            document.getElementById('id_ItemType').addEventListener('change', function () {
-                                var otherItemNameInput = document.getElementById('id_other_item_name');
-                                if (this.value === 'other') {
-                                    otherItemNameInput.style.display = (this.value === 'other') ? 'block' : 'none';
-                                } else {
-                                    otherItemNameInput.style.display = 'none';
-                                    otherItemNameInput.value = '';  // Clear the value if not 'other'
-                                }
-                            });
-
-
-
-                        </script>
-                        <script>
-
-                            $(document).ready(function() {
-                            // Function to fetch dropdown data
-                                function fetchDropdownData() {
-                                    $.ajax({
-                                        type: "GET",
-                                        url: "{% url 'get_column_data' %}",
-                                        success: function(data) {
-                                            // Update Vendor
-                                            var dropdown = $("#id_VendorType");
-                                            dropdown.empty();
-                                            $.each(data.vendors, function(index, value) {
-                                                dropdown.append($("<option>").text(value));
-                                            });
-
-                                        },
-                                        error: function(error) {
-                                            console.log("Ajax request failed: " + error);
-                                        }
-                                    });
-                                }
-                                function fetchDropdownData_company() {
-                                    $.ajax({
-                                        type: "GET",
-                                        url: "{% url 'get_column_data' %}",
-                                        success: function(data) {
-
-                                            // Update Company
-                                            var dropdown1 = $("#id_CompanyType");
-                                            dropdown1.empty();
-                                            $.each(data.companies, function(index, value) {
-                                                dropdown1.append($("<option>").text(value));
-                                            });
-
-                                        },
-                                        error: function(error) {
-                                            console.log("Ajax request failed: " + error);
-                                        }
-                                    });
-                                }
-
-                                function fetchDropdownData_item() {
-                                    $.ajax({
-                                        type: "GET",
-                                        url: "{% url 'get_column_data' %}",
-                                        success: function(data) {
-
-                                        // Update Item
-                                        var dropdown2 = $("#id_ItemType");
-                                        dropdown2.empty();
-                                        $.each(data.items_v, function(index, value) {
-                                            dropdown2.append($("<option>").text(value));
-                                        });
-
-                                        },
-                                        error: function(error) {
-                                            console.log("Ajax request failed: " + error);
-                                        }
-                                    });
-                                }
-
-                                // $("#loadLatestData").click(function() {
-                                //     fetchDropdownData();
-                                //     fetchDropdownData_company();
-                                //     fetchDropdownData_item();
-                                //     });
-
-                                fetchDropdownData();
-                                fetchDropdownData_company();
-                                fetchDropdownData_item();
-
-                            });
-                        </script>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Adhoc Model Insertion</h3>
                     </div>
+                    <div class="card-body">
+                        <form method="post" action="{% url 'MainPage' %}" id="myForm">
+                            {% csrf_token %}
+                            <!-- Style for form fields -->
+                            <div class="form-field">
+                                {{ form.as_p }}
+                                <script src="https://code.jquery.com/jquery.min.js"></script>
+                                 <script>
+                                    // Show/hide the custom vendor name input based on the selected option
+                                    document.getElementById('id_VendorType').addEventListener('change', function () {
+                                        var otherVendorNameInput = document.getElementById('id_other_vendor_name');
+                                        if (this.value === 'other') {
+                                            otherVendorNameInput.style.display = (this.value === 'other') ? 'block' : 'none';
+                                        } else {
+                                            otherVendorNameInput.style.display = 'none';
+                                            otherVendorNameInput.value = '';  // Clear the value if not 'other'
+                                        }
+                                    });
+                                    // Show/hide the custom vendor name input based on the selected option
+                                    document.getElementById('id_CompanyType').addEventListener('change', function () {
+                                        var otherCompanyNameInput = document.getElementById('id_other_company_name');
+                                        if (this.value === 'other') {
+                                            otherCompanyNameInput.style.display = (this.value === 'other') ? 'block' : 'none';
+                                        } else {
+                                            otherCompanyNameInput.style.display = 'none';
+                                            otherCompanyNameInput.value = '';  // Clear the value if not 'other'
+                                        }
+                                    });
+                                    // Show/hide the custom vendor name input based on the selected option
+                                    document.getElementById('id_ItemType').addEventListener('change', function () {
+                                        var otherItemNameInput = document.getElementById('id_other_item_name');
+                                        if (this.value === 'other') {
+                                            otherItemNameInput.style.display = (this.value === 'other') ? 'block' : 'none';
+                                        } else {
+                                            otherItemNameInput.style.display = 'none';
+                                            otherItemNameInput.value = '';  // Clear the value if not 'other'
+                                        }
+                                    });
 
-                    <div>
-                        {% if success_message %}
-                            <b style="color: green;">{{ success_message }}</b>
-                        {% endif %}
 
-                        {% if error_message %}
-                            <b style="color: red;">{{ error_message }}</b>
-                        {% endif %}
 
+                                </script>
+                                <script>
+
+                                    $(document).ready(function() {
+                                    // Function to fetch dropdown data
+                                        function fetchDropdownData() {
+                                            $.ajax({
+                                                type: "GET",
+                                                url: "{% url 'get_column_data' %}",
+                                                success: function(data) {
+                                                    // Update Vendor
+                                                    var dropdown = $("#id_VendorType");
+                                                    dropdown.empty();
+                                                    $.each(data.vendors, function(index, value) {
+                                                        dropdown.append($("<option>").text(value));
+                                                    });
+
+                                                },
+                                                error: function(error) {
+                                                    console.log("Ajax request failed: " + error);
+                                                }
+                                            });
+                                        }
+                                        function fetchDropdownData_company() {
+                                            $.ajax({
+                                                type: "GET",
+                                                url: "{% url 'get_column_data' %}",
+                                                success: function(data) {
+
+                                                    // Update Company
+                                                    var dropdown1 = $("#id_CompanyType");
+                                                    dropdown1.empty();
+                                                    $.each(data.companies, function(index, value) {
+                                                        dropdown1.append($("<option>").text(value));
+                                                    });
+
+                                                },
+                                                error: function(error) {
+                                                    console.log("Ajax request failed: " + error);
+                                                }
+                                            });
+                                        }
+
+                                        function fetchDropdownData_item() {
+                                            $.ajax({
+                                                type: "GET",
+                                                url: "{% url 'get_column_data' %}",
+                                                success: function(data) {
+
+                                                // Update Item
+                                                var dropdown2 = $("#id_ItemType");
+                                                dropdown2.empty();
+                                                $.each(data.items_v, function(index, value) {
+                                                    dropdown2.append($("<option>").text(value));
+                                                });
+
+                                                },
+                                                error: function(error) {
+                                                    console.log("Ajax request failed: " + error);
+                                                }
+                                            });
+                                        }
+
+                                        // $("#loadLatestData").click(function() {
+                                        //     fetchDropdownData();
+                                        //     fetchDropdownData_company();
+                                        //     fetchDropdownData_item();
+                                        //     });
+
+                                        fetchDropdownData();
+                                        fetchDropdownData_company();
+                                        fetchDropdownData_item();
+
+                                    });
+                                </script>
+                            </div>
+
+                            <div>
+                                {% if success_message %}
+                                    <b style="color: green;">{{ success_message }}</b>
+                                {% endif %}
+
+                                {% if error_message %}
+                                    <b style="color: red;">{{ error_message }}</b>
+                                {% endif %}
+
+                            </div>
+
+
+                            <button type="submit" class="form-submit">Model Submit</button>
+        <!--                    <button id="loadLatestData" type="button" class="form-submit">Fetch All Vendor,Company,Items</button>-->
+                        </form>
                     </div>
-
-
-                    <button type="submit" class="form-submit">Model Submit</button>
-<!--                    <button id="loadLatestData" type="button" class="form-submit">Fetch All Vendor,Company,Items</button>-->
-                </form>
+                    <a href="{% url 'FetchModelDetails' %}" class="styled-button">FetchModelDetails
+                    </a>
+                </div>
             </div>
-            <a href="{% url 'FetchModelDetails' %}" class="styled-button">FetchModelDetails
-            </a>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Bulk Uploads</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="uploadForm" method="post" action="{% url 'upload_excel' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="file" name="excel_file" id="excelFile">
+                            <button type="submit" class="form-submit">Upload Excel</button>
+                                {% if success_message_file_upload %}
+                                    <p style="color: green;">{{ success_message_file_upload }}</p>
+                                {% endif %}
+
+                                {% if error_message_file_upload %}
+                                    <p style="color: red;">{{ error_message_file_upload }}</p>
+                                {% endif %}
+
+                            <script>
+                                    document.getElementById('uploadForm').addEventListener('submit', function(event) {
+                                    var fileInput = document.getElementById('excelFile');
+                                    // Check if file input has no file selected
+                                    if (!fileInput.files.length) {
+                                        // Prevent form submission if no file is selected
+                                        event.preventDefault();
+                                        alert("No file choosen. Please select a file.");
+                                    }
+                                });
+                            </script>
+                        </form>
+                     </div>
+                </div>
+            </div>
+
         </div>
     </div>
+
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
