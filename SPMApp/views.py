@@ -212,8 +212,13 @@ def upload_excel(request):
             })
 
         except Exception as e:
-            return render(request, 'MainPageTemplate.html', {
-                'error_message_file_upload' : failure
-            })
+            if len(failure)>0:
+                return render(request, 'MainPageTemplate.html', {
+                    'error_message_file_upload' : failure
+                })
+            else:
+                return render(request, 'MainPageTemplate.html', {
+                    'error_message_file_upload' : str(e)
+                })
 
     return render(request, 'MainPageTemplate.html')
